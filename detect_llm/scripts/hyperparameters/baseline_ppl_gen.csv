@@ -1,0 +1,19 @@
+DATASET,model_version,model_path,note
+writing,llama2-7B,/mnt/hdd-nfs/mgubri/models_hf/models--meta-llama--Llama-2-7b-chat-hf/snapshots/08751db2aca9bf2f7f80d2e516117a53d7450235/,writing llama2-7B
+writing,llama2-13B,/mnt/hdd-nfs/mgubri/models_hf/models--meta-llama--Llama-2-13b-chat-hf/snapshots/c2f3ec81aac798ae26dcc57799a994dfbf521496/,writing llama2-13B
+writing,vicuna-7B,/mnt/hdd-nfs/mgubri/models_hf/models--lmsys--vicuna-7b-v1.3/snapshots/236eeeab96f0dc2e463f2bebb7bb49809279c6d6/,writing vicuna-7B
+writing,vicuna-13B,/mnt/hdd-nfs/mgubri/models_hf/models--lmsys--vicuna-13b-v1.3/snapshots/6566e9cb1787585d1147dcf4f9bc48f29e1328d2/,writing vicuna-13B
+writing,guanaco-7B,/mnt/hdd-nfs/mgubri/models_hf/models--TheBloke--guanaco-7B-HF/snapshots/293c24105fa15afa127a2ec3905fdc2a0a3a6dac/,writing guanaco-7B
+writing,guanaco-13B,/mnt/hdd-nfs/mgubri/models_hf/models--TheBloke--guanaco-13B-HF/snapshots/bd59c700815124df616a17f5b49a0bc51590b231/,writing guanaco-13B
+pubmed,llama2-7B,/mnt/hdd-nfs/mgubri/models_hf/models--meta-llama--Llama-2-7b-chat-hf/snapshots/08751db2aca9bf2f7f80d2e516117a53d7450235/,pubmed llama2-7B
+pubmed,llama2-13B,/mnt/hdd-nfs/mgubri/models_hf/models--meta-llama--Llama-2-13b-chat-hf/snapshots/c2f3ec81aac798ae26dcc57799a994dfbf521496/,pubmed llama2-13B
+pubmed,vicuna-7B,/mnt/hdd-nfs/mgubri/models_hf/models--lmsys--vicuna-7b-v1.3/snapshots/236eeeab96f0dc2e463f2bebb7bb49809279c6d6/,pubmed vicuna-7B
+pubmed,vicuna-13B,/mnt/hdd-nfs/mgubri/models_hf/models--lmsys--vicuna-13b-v1.3/snapshots/6566e9cb1787585d1147dcf4f9bc48f29e1328d2/,pubmed vicuna-13B
+pubmed,guanaco-7B,/mnt/hdd-nfs/mgubri/models_hf/models--TheBloke--guanaco-7B-HF/snapshots/293c24105fa15afa127a2ec3905fdc2a0a3a6dac/,pubmed guanaco-7B
+pubmed,guanaco-13B,/mnt/hdd-nfs/mgubri/models_hf/models--TheBloke--guanaco-13B-HF/snapshots/bd59c700815124df616a17f5b49a0bc51590b231/,pubmed guanaco-13B
+wiki,llama2-7B,/mnt/hdd-nfs/mgubri/models_hf/models--meta-llama--Llama-2-7b-chat-hf/snapshots/08751db2aca9bf2f7f80d2e516117a53d7450235/,wiki llama2-7B
+wiki,llama2-13B,/mnt/hdd-nfs/mgubri/models_hf/models--meta-llama--Llama-2-13b-chat-hf/snapshots/c2f3ec81aac798ae26dcc57799a994dfbf521496/,wiki llama2-13B
+wiki,vicuna-7B,/mnt/hdd-nfs/mgubri/models_hf/models--lmsys--vicuna-7b-v1.3/snapshots/236eeeab96f0dc2e463f2bebb7bb49809279c6d6/,wiki vicuna-7B
+wiki,vicuna-13B,/mnt/hdd-nfs/mgubri/models_hf/models--lmsys--vicuna-13b-v1.3/snapshots/6566e9cb1787585d1147dcf4f9bc48f29e1328d2/,wiki vicuna-13B
+wiki,guanaco-7B,/mnt/hdd-nfs/mgubri/models_hf/models--TheBloke--guanaco-7B-HF/snapshots/293c24105fa15afa127a2ec3905fdc2a0a3a6dac/,wiki guanaco-7B
+wiki,guanaco-13B,/mnt/hdd-nfs/mgubri/models_hf/models--TheBloke--guanaco-13B-HF/snapshots/bd59c700815124df616a17f5b49a0bc51590b231/,wiki guanaco-13B
