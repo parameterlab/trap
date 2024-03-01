@@ -284,31 +284,9 @@ python compute_results.py --path-suffixes ${PATH_SUFFIXES} --model-name llama-2 
 
 #### 1. Sample answers
 
-```shell
-SEED=42 # 60 61 ... 68 # 10 runs to collect 100k samples per model
-
-TARGET_MODELS=(
-  "llama-2 llama2-7B /mnt/hdd-nfs/mgubri/models_hf/models--meta-llama--Llama-2-7b-chat-hf/snapshots/08751db2aca9bf2f7f80d2e516117a53d7450235/"
-  "llama-2 llama2-13B /mnt/hdd-nfs/mgubri/models_hf/models--meta-llama--Llama-2-13b-chat-hf/snapshots/c2f3ec81aac798ae26dcc57799a994dfbf521496/"
-  "vicuna vicuna-7B /mnt/hdd-nfs/mgubri/models_hf/models--lmsys--vicuna-7b-v1.3/snapshots/236eeeab96f0dc2e463f2bebb7bb49809279c6d6/"
-  "vicuna vicuna-13B /mnt/hdd-nfs/mgubri/models_hf/models--lmsys--vicuna-13b-v1.3/snapshots/6566e9cb1787585d1147dcf4f9bc48f29e1328d2/"
-  "guanaco guanaco-7B /mnt/hdd-nfs/mgubri/models_hf/models--TheBloke--guanaco-7B-HF/snapshots/293c24105fa15afa127a2ec3905fdc2a0a3a6dac/"
-  "guanaco guanaco-13B /mnt/hdd-nfs/mgubri/models_hf/models--TheBloke--guanaco-13B-HF/snapshots/bd59c700815124df616a17f5b49a0bc51590b231/"
-)
-
-for target_model in "${TARGET_MODELS[@]}"; do
-  IFS=' ' read -r target_name target_version target_path <<< "$target_model"
-  echo "**** MODEL $target_version ****"
-  temp='1.0'
-  NEW_GEN_CONF="{'temperature': ${temp}}"
-  python -u compute_results_baseline.py --n-gen 10000 --n-digits 4 --model-name $target_name --model-version $target_version --model-path $target_path --verbose 2 --export-base-folder /mnt/hdd-nfs/mgubri/adv-suffixes/detect_llm/ --gen-config-override "${NEW_GEN_CONF}" --seed $SEED
-done
-```
-
-intent:
+Sample 10k answers without suffixes for every open models.
 ```shell
 SEED=70
-
 TARGET_MODELS=(
   "llama-2 llama2-7B /mnt/hdd-nfs/mgubri/models_hf/models--meta-llama--Llama-2-7b-chat-hf/snapshots/08751db2aca9bf2f7f80d2e516117a53d7450235/"
   "llama-2 llama2-13B /mnt/hdd-nfs/mgubri/models_hf/models--meta-llama--Llama-2-13b-chat-hf/snapshots/c2f3ec81aac798ae26dcc57799a994dfbf521496/"
@@ -321,19 +299,29 @@ TARGET_MODELS=(
 for target_model in "${TARGET_MODELS[@]}"; do
   IFS=' ' read -r target_name target_version target_path <<< "$target_model"
   echo "***** MODEL $target_version *****"
-  #for temp in 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0 ; do
+  for temp in 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0 ; do
     echo "** Temperature: ${temp} **"
     NEW_GEN_CONF="{'temperature': ${temp}, 'top_p':1.0}"
     python -u compute_results_baseline.py --n-gen 10000 --n-digits 4 --model-name $target_name --model-version $target_version --model-path $target_path --verbose 2 --export-base-folder /mnt/hdd-nfs/mgubri/adv-suffixes/detect_llm/ --export-sub-folder 'xp_temperature' --gen-config-override "${NEW_GEN_CONF}" --seed $SEED
-  #done
+  done
 done
 ```
 
-
-different system prompts
+Sample from OpenAI API.
 ```shell
-scenario='' # loaded from csv
+OPENAI_MODELS=(
+  "gpt-3.5-turbo-0613"
+  "gpt-4-1106-preview"
+)
 
+for model in "${OPENAI_MODELS[@]}"; do
+  echo "**** MODEL $model ****"
+  python -m pdb compute_results_baseline_api.py --api 'openai' --model-name $model --n-gen 10000 --n-digits 4 --system-prompt 'openai' --verbose 2 --export-base-folder . 
+done
+```
+
+Sample open models with different system prompts.
+```shell
 SEED=70
 TARGET_MODELS=(
   "llama-2 llama2-7B /mnt/hdd-nfs/mgubri/models_hf/models--meta-llama--Llama-2-7b-chat-hf/snapshots/08751db2aca9bf2f7f80d2e516117a53d7450235/"
@@ -347,28 +335,15 @@ TARGET_MODELS=(
 for target_model in "${TARGET_MODELS[@]}"; do
     IFS=' ' read -r target_name target_version target_path <<< "$target_model"
     echo "***** MODEL $target_version *****"
-    #for scenario in 'llama-2' 'openai' 'fastchat' 'SHAKESPEARE_WRITING_ASSISTANT' 'IRS_TAX_CHATBOT' 'MARKETING_WRITING_ASSISTANT' 'XBOX_CUSTOMER_SUPPORT_AGENT' 'HIKING_RECOMMENDATION_CHATBOT' 'JSON_FORMATTER_ASSISTANT' ; do
-    echo "** Scenario system prompt: ${scenario} **"
-    temp='1.0'
-    NEW_GEN_CONF="{'temperature': ${temp}, 'top_p':1.0}"
-    python -u compute_results_baseline.py --n-gen 10000 --n-digits 4 --model-name $target_name --model-version $target_version --model-path $target_path --verbose 2 --export-base-folder /mnt/hdd-nfs/mgubri/adv-suffixes/detect_llm/ --export-sub-folder 'xp_system_prompt' --gen-config-override "${NEW_GEN_CONF}" --seed $SEED --system-prompt "${scenario}"
-    #done
+    for scenario in 'llama-2' 'openai' 'fastchat' 'SHAKESPEARE_WRITING_ASSISTANT' 'IRS_TAX_CHATBOT' 'MARKETING_WRITING_ASSISTANT' 'XBOX_CUSTOMER_SUPPORT_AGENT' 'HIKING_RECOMMENDATION_CHATBOT' 'JSON_FORMATTER_ASSISTANT' ; do
+        echo "** Scenario system prompt: ${scenario} **"
+        temp='1.0'
+        NEW_GEN_CONF="{'temperature': ${temp}, 'top_p':1.0}"
+        python -u compute_results_baseline.py --n-gen 10000 --n-digits 4 --model-name $target_name --model-version $target_version --model-path $target_path --verbose 2 --export-base-folder /mnt/hdd-nfs/mgubri/adv-suffixes/detect_llm/ --export-sub-folder 'xp_system_prompt' --gen-config-override "${NEW_GEN_CONF}" --seed $SEED --system-prompt "${scenario}"
+    done
 done
 ```
 
-Sample from OpenAI API:
-```shell
-OPENAI_MODELS=(
-  "gpt-3.5-turbo-0613"
-  "gpt-4-1106-preview"
-  #"gpt-4-0613" # more expensive
-)
-
-for model in "${OPENAI_MODELS[@]}"; do
-  echo "**** MODEL $model ****"
-  python -m pdb compute_results_baseline_api.py --api 'openai' --model-name $model --n-gen 10000 --n-digits 4 --system-prompt 'openai' --verbose 2 --export-base-folder . 
-done
-```
 
 #### 2. Perplexity
 
