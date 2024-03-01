@@ -27,9 +27,8 @@ Developed at [Parameter Lab](https://parameterlab.de/) with the support of [Nave
 ### 🦹 Motivation
 
 - 💧 Private LLMs that cost millions of dollars to train may be leaked by internal or external threats. 
-- 🐍 Open-source LLMs are distributed under restrictive licenses that may not be respected. For instances, Microsoft's Orca-2 is distributed under no-commercial licence, and Meta's usage policy of Llama-2 forbits deceptive usages.
-- 🎭 LLMs do not disclose reliably their identity. For instances, Mixtral-8x7B identifies it-self as  FAIR’s BlenderBot
-3.0, and we can disguise GPT-3.5 and GPT-4 as Anthropic's Claude or as Llama-2, using deceptive system prompts.
+- 🐍 Open-source LLMs are distributed under restrictive licenses that may not be respected. For instances, Microsoft's Orca-2 is distributed under a no-commercial licence, and Meta's usage policy of Llama-2 forbids deceptive usages.
+- 🎭 LLMs do not disclose reliably their identity. For instances, Mixtral-8x7B identifies it-self as FAIR’s BlenderBot 3.0, and we can disguise GPT-3.5 and GPT-4 as Anthropic's Claude or as Llama-2, using deceptive system prompts.
 
 Therefore, we need specific tools to ensure **compliance**. 
 
@@ -37,7 +36,7 @@ Therefore, we need specific tools to ensure **compliance**.
 
 A reference LLM (either close or open) can be deployed silently by a third party to power an application. So, we propose a new task, BBIV, of detecting the usage of an LLM in a third-party application, which is critical for assessing compliance.
 
-**Question:** Does this ![third party application](img/badge_third_party.svg) use our ![reference LLM](img/badge_ref_llm.svg)?
+**Question:** Does this ![third-party application](img/badge_third_party.svg) use our ![reference LLM](img/badge_ref_llm.svg)?
 
 ![](img/task-bbiv.v2.png)
 
@@ -57,17 +56,17 @@ TRAP is composed of:
 ![Schema method](img/method-reap.v3.png)
 
 🍯 The final prompt is a honeypot: 
- - The suffix forces the reference LLM to output the target number 95-100% of the time
- - The suffix is specific to the reference LLM (<1% average transfer rate to another LLM)
- - TRAP beats the perplexity baseline 
-   - Using less output tokens (3-18 tokens vs. 150 tokens)
-   - Perplexity identification is sensible to the type of prompts
+- The suffix forces the reference LLM to output the target number 95-100% of the time
+- The suffix is specific to the reference LLM (<1% average transfer rate to another LLM)
+- TRAP beats the perplexity baseline 
+  - Using less output tokens (3-18 tokens vs. 150 tokens)
+  - Perplexity identification is sensible to the type of prompt
 
-<img src="img/plot_main_roc_Llama2-7B-chat.png?raw=true" alt="ROC curve" width="350">
+
 
 🛡️ Third-party can deploy the ![reference LLM](img/badge_ref_llm.svg) with changes
-  - TRAP is robust to generation hyperparameters (usual ranges)
-  - TRAP is not robust to some system prompts
+- TRAP is robust to generation hyperparameters (usual ranges)
+- TRAP is not robust to some system prompts
 
 ![Robustness plot](img/plot_robustness.v3.png)
 
