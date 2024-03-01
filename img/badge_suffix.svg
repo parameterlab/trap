@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="30" role="img" aria-label="Suffix">
+  <title>Suffix</title>
+  <rect rx="5" ry="5" width="60" height="30" fill="purple"/>
+  <text x="30" y="20" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" fill="white" font-size="14px">Suffix</text>
+</svg>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="170" height="30" role="img" aria-label="third-party application">
+  <title>third-party application</title>
+  <rect rx="5" ry="5" width="170" height="30" fill="#333"/>
+  <text x="85" y="20" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" fill="#FFD700" font-size="14px">third-party application</text>
+</svg>
