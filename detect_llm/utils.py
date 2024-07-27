@@ -12,6 +12,14 @@ def create_parent_folder(filename):
     directory = os.path.dirname(filename)
     os.makedirs(directory, exist_ok=True)
 
+
+def load_suffixes_csv(path: str):
+    """
+    Load a single CSV file of suffixes
+    """
+    return pd.read_csv(path)
+
+
 def load_suffixes(path, seed=None, step=None):
     """
     Load the suffixes as dataframe
@@ -19,11 +27,18 @@ def load_suffixes(path, seed=None, step=None):
     :param seed: Load only the suffixes of a specific random seed
     :param step: Load suffixes at a specific optimization step. Default (None), load the suffixes at the best iteration (lowest loss)
     """
+    if '.csv' in path:
+        if step is not None:
+            raise NotImplementedError('CSV loading does not support step.')
+        return load_suffixes_csv(path=path)
+
     files = glob.glob(os.path.join(path, "*.json"))
     if len(files) == 0:
-        raise ValueError(f'Empty directory no JSON files in: {path}')
+        raise ValueError(f'Empty directory no JSON/CSV files in: {path}')
     if seed:
         files = [f for f in files if f'seed{seed}_' in f]  # filter filename with the seed
+        if len(files) == 0:
+            raise ValueError(f'No JSON/CSV files with seed: {seed}')
     files = [f for f in files if os.path.getsize(f) > 0]  # ignore empty files
     files = sorted(files, key=lambda x: "_".join(x.split('_')[:-1]))
     data = []
