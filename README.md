@@ -76,13 +76,25 @@ Read [the full paper](https://arxiv.org/abs/2402.12991) for more details.
 
 If you use our code or our method, kindly consider citing our paper:
 ```bibtex
-@misc{gubri2024trap,
-      title={TRAP: Targeted Random Adversarial Prompt Honeypot for Black-Box Identification}, 
-      author={Martin Gubri and Dennis Ulmer and Hwaran Lee and Sangdoo Yun and Seong Joon Oh},
-      year={2024},
-      eprint={2402.12991},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG}
+@inproceedings{gubri2024trap,
+    title = "{TRAP}: Targeted Random Adversarial Prompt Honeypot for Black-Box Identification",
+    author = "Gubri, Martin  and
+      Ulmer, Dennis  and
+      Lee, Hwaran  and
+      Yun, Sangdoo  and
+      Oh, Seong Joon",
+    editor = "Ku, Lun-Wei  and
+      Martins, Andre  and
+      Srikumar, Vivek",
+    booktitle = "Findings of the Association for Computational Linguistics ACL 2024",
+    month = aug,
+    year = "2024",
+    address = "Bangkok, Thailand and virtual meeting",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.findings-acl.683",
+    doi = "10.18653/v1/2024.findings-acl.683",
+    pages = "11496--11517",
+    abstract = "Large Language Model (LLM) services and models often come with legal rules on *who* can use them and *how* they must use them. Assessing the compliance of the released LLMs is crucial, as these rules protect the interests of the LLM contributor and prevent misuse. In this context, we describe the novel fingerprinting problem of Black-box Identity Verification (BBIV). The goal is to determine whether a third-party application uses a certain LLM through its chat function. We propose a method called Targeted Random Adversarial Prompt (TRAP) that identifies the specific LLM in use. We repurpose adversarial suffixes, originally proposed for jailbreaking, to get a pre-defined answer from the target LLM, while other models give random answers. TRAP detects the target LLMs with over 95{\%} true positive rate at under 0.2{\%} false positive rate even after a single interaction. TRAP remains effective even if the LLM has minor changes that do not significantly alter the original function.",
 }
 ```
 
