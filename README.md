@@ -104,7 +104,7 @@ If you use our code or our method, kindly consider citing our paper:
 
 ### Dependencies 
 
-The `requirements.txt` file corresponds to CUDA version 12.2. 
+The `requirements.txt` file corresponds to CUDA version 12.2 and Python 3.8. 
 
 ```shell
 pip install -r requirements.txt
